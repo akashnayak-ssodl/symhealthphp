@@ -1,0 +1,6 @@
+Options -Indexes
+RewriteEngine On
+# allow /about-symbiosis as well as /about-symbiosis.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
