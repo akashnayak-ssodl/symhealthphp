@@ -82,10 +82,15 @@ include __DIR__ . '/includes/header.php';
   <div class="gallery"><img src="https://symhealth.siu.edu.in/assets/SIU%20lavale.jpg" alt="Symbiosis campus" loading="lazy"><img src="https://symhealth.siu.edu.in/assets/SIU%202.jpg" alt="Symbiosis campus" loading="lazy"><img src="https://symhealth.siu.edu.in/assets/SIU%20building.jpg" alt="Symbiosis campus" loading="lazy"><img src="https://symhealth.siu.edu.in/assets/Lavale.jpg" alt="Symbiosis campus" loading="lazy"></div>
 </div></section>
 
-<section><div class="wrap">
+<section class="partners-section" id="partners"><div class="wrap">
   <h2>Our partners</h2>
   <p class="lead">Associates and media partners who support SYMHEALTH.</p>
-  <img class="brands" src="https://symhealth.siu.edu.in/assets/images/brands.jpg" alt="Partner logos" loading="lazy">
+  <div class="brand-marquee" role="region" aria-label="SYMHEALTH partner logos" tabindex="0">
+    <div class="brand-track">
+      <img class="brands" src="https://symhealth.siu.edu.in/assets/images/brands.jpg" alt="SYMHEALTH partner and associate logos" loading="lazy">
+      <img class="brands" src="https://symhealth.siu.edu.in/assets/images/brands.jpg" alt="" aria-hidden="true" loading="lazy">
+    </div>
+  </div>
 </div></section>
 </main>
 <?php include __DIR__ . '/includes/footer.php'; ?>
