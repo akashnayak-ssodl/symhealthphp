@@ -31,3 +31,9 @@ source site is down, the last saved copy is shown.
 ## Tips
 - Refresh one page now: `about.php?refresh=change-me` (change the key in includes/config.php).
 - If a page shows extra or missing parts, put the content block's XPath as the third value of that page in `pages()` (includes/config.php).
+
+
+
+
+cd C:\symhealthphp\symhealth-php
+php -S 127.0.0.1:8000
