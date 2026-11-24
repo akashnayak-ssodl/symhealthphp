@@ -98,7 +98,7 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 .nav-dropdown > summary::-webkit-details-marker { display: none; }
 .nav-item > a:hover, .nav-dropdown > summary:hover { color: #fff; background: rgba(255,255,255,.08); }
 .nav-item > a[aria-current='page'] { color: #f3c28d; box-shadow: inset 0 -2px #f3c28d; }
-.nav-item:first-child > a { width: 44px; justify-content: center; background: rgba(0,0,0,.14); }
+.nav-item:first-child > a { width: 44px; justify-content: center; }
 .dropdown-list { position: absolute; top: 100%; left: 0; z-index: 30; width: 220px; min-width: 200px; max-width: 280px; margin: 0; padding: 4px 0; border: 0; border-radius: 0 0 4px 4px; background: var(--paper); box-shadow: 0 7px 16px rgba(20,5,8,.2); list-style: none; }
 .dropdown-list a { display: block; padding: 8px 14px; color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 12px; text-decoration: none; }
 .dropdown-list a:hover { color: var(--brand); background: var(--surface); }
@@ -113,7 +113,7 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 .hero-media, .hero-shade { position: absolute; inset: 0; }
 .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.1s ease; }
 .hero-media img.is-active { opacity: 1; }
-.hero-shade { background: linear-gradient(90deg, rgba(77, 20, 25, .88) 0%, rgba(130, 32, 40, .72) 52%, rgba(112, 25, 34, .26) 100%), linear-gradient(0deg, rgba(39, 9, 14, .34), transparent 46%); }
+.hero-shade { background: linear-gradient(90deg, rgba(77, 20, 25, .68) 0%, rgba(130, 32, 40, .48) 52%, rgba(112, 25, 34, .16) 100%), linear-gradient(0deg, rgba(39, 9, 14, .22), transparent 46%); }
 .hero-content { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; padding-block: 82px 125px; }
 .hero-copy { max-width: 690px; }
 .event-status { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 28px; padding: 8px 13px; border: 1px solid rgba(255,255,255,.24); border-radius: 100px; background: rgba(255,255,255,.1); font-size: 12px; }
