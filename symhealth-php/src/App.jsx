@@ -126,6 +126,16 @@ function Header({ theme, onThemeChange }) {
   }, [location.pathname]);
 
   useEffect(() => {
+    const closeDropdowns = (event) => {
+      document.querySelectorAll('.nav-dropdown[open]').forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) dropdown.open = false;
+      });
+    };
+    document.addEventListener('pointerdown', closeDropdowns);
+    return () => document.removeEventListener('pointerdown', closeDropdowns);
+  }, []);
+
+  useEffect(() => {
     if (!isHome) {
       setIsScrolled(false);
       return undefined;
