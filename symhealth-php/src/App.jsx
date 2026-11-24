@@ -188,7 +188,6 @@ function Header() {
             <div className="compact-home-links">
               <NavigationItems items={headerNavigation} id="compact-home-navigation" pathname={location.pathname} />
             </div>
-            <a href="#highlights" className="highlights-link">View highlights</a>
             <button className="menu-toggle compact-menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="compact-home-navigation" onClick={() => setMenuOpen((open) => !open)}>
               <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
             </button>
