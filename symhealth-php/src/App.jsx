@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import logo from '../images/symbiosis-logo.png';
+import logo from '../images/symbiosis-symhealth-logo.png';
 import SmartLink from './components/SmartLink.jsx';
 import { eventLogo, navigation, pageData } from './data.js';
 
@@ -39,6 +39,10 @@ const localPages = [
 
 const navigationByLabel = new Map(navigation.map((item) => [item.label, item]));
 const reportLinks = new Map(navigationByLabel.get('Reports').children.map((item) => [item.label, item]));
+const sponsorAndGalleryLinks = [
+  ...navigationByLabel.get('Sponsorship').children,
+  ...navigationByLabel.get('Gallery').children,
+];
 const reportNavigation = {
   label: 'REPORT',
   children: [
@@ -63,6 +67,10 @@ const reportNavigation = {
     reportLinks.get('SYMHEALTH 2025'),
   ],
 };
+const sponsorsAndGalleryNavigation = {
+  label: 'SPONSORSHIP & GALLERY',
+  children: sponsorAndGalleryLinks,
+};
 const headerNavigation = [
   { ...navigationByLabel.get('Home'), icon: 'home' },
   { ...navigationByLabel.get('About Us'), label: 'ABOUT US' },
@@ -71,8 +79,7 @@ const headerNavigation = [
   { ...navigationByLabel.get('Call for Papers'), label: 'CALL FOR PAPER' },
   { ...navigationByLabel.get('Registration'), label: 'REGISTRATION' },
   reportNavigation,
-  { ...navigationByLabel.get('Sponsorship'), label: 'SPONSORSHIP' },
-  { ...navigationByLabel.get('Gallery'), label: 'GALLERY' },
+  sponsorsAndGalleryNavigation,
   { label: 'CONTACT US', to: '/contact-us' },
 ];
 
@@ -113,7 +120,7 @@ function NavigationItems({ items, id, pathname }) {
   );
 }
 
-function Header({ theme, onThemeChange }) {
+function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -185,9 +192,6 @@ function Header({ theme, onThemeChange }) {
               <button className="icon-button" type="button" aria-label="Search this website" onClick={() => setSearchOpen(true)}>
                 <span aria-hidden="true">⌕</span>
               </button>
-              <button className="icon-button theme-toggle" type="button" aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} onClick={onThemeChange}>
-                <span aria-hidden="true">{theme === 'dark' ? '☼' : '◐'}</span>
-              </button>
               <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="home-top-navigation" onClick={() => setMenuOpen((open) => !open)}>
                 <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
               </button>
@@ -197,7 +201,7 @@ function Header({ theme, onThemeChange }) {
         <nav className="compact-home-nav" aria-label="Conference navigation">
           <div className="container compact-home-inner">
             <SmartLink to="/" className="compact-event-brand" aria-label="SYMHEALTH 2026 home">
-              <img src={eventLogo} alt="" />
+              <img src={logo} alt="Symbiosis International (Deemed University)" />
               <strong>SYMHEALTH <span>2026</span></strong>
             </SmartLink>
             <div className="compact-home-links">
@@ -241,9 +245,6 @@ function Header({ theme, onThemeChange }) {
             <SmartLink to="/contact-us" className="header-contact">Contact us <span aria-hidden="true">↗</span></SmartLink>
             <button className="icon-button" type="button" aria-label="Search this website" onClick={() => setSearchOpen(true)}>
               <span aria-hidden="true">⌕</span>
-            </button>
-            <button className="icon-button theme-toggle" type="button" aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} onClick={onThemeChange}>
-              <span aria-hidden="true">{theme === 'dark' ? '☼' : '◐'}</span>
             </button>
             <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen((open) => !open)}>
               <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
@@ -366,7 +367,7 @@ export default function App() {
   return (
     <div id="top" className="site-shell">
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <Header theme={theme} onThemeChange={() => setTheme((value) => value === 'dark' ? 'light' : 'dark')} />
+      <Header />
       <main id="main-content">
         <Suspense fallback={<div className="container page-loading" role="status">Loading page…</div>}>
           {currentPage.kind === 'home' && <HomePage />}
