@@ -1,6 +1,12 @@
 Options -Indexes
+DirectoryIndex index.html
 RewriteEngine On
-# allow /about-symbiosis as well as /about-symbiosis.php
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.+?)/?$ $1.php [L]
+
+# Legacy PHP page URLs now resolve through the React app.
+RewriteRule ^(.+)\.php$ index.html [L]
+
+# Serve built assets directly and send all app routes (including old .php links) to React.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^ index.html [L]

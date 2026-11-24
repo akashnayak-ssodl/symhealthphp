@@ -1,39 +1,38 @@
-# SYMHEALTH 2026 – PHP website
+# SYMHEALTH 2026
 
-PHP 8.2 or newer. One PHP file per page. Page text and pictures are read from https://symhealth.siu.edu.in/
-and shown in the new design.
+The website is a React single-page application built with Vite. Its page content and navigation are bundled locally; it does not require PHP or fetch page content from the original site at runtime.
 
-## Run on your computer
-    cd symhealth-php
-    php -S localhost:8000
-Open http://localhost:8000 (needs the PHP curl and dom extensions, normally included).
+## Run locally
 
-## Put online
-Upload the whole folder to a PHP 8.2+ host (Apache). Make the `cache/` folder writable.
-`.htaccess` lets `/about-symbiosis` work as well as `/about-symbiosis.php`.
+Install Node.js 18 or newer, then run:
 
-## Files
-    index.php                 home page
-    about-symbiosis.php ...   one file per inner page (22 pages)
-    includes/config.php       page list, menu, cache time, source URL
-    includes/scraper.php      downloads a source page, removes its old menu/footer, keeps text + pictures
-    includes/page.php         shared inner-page template
-    includes/header.php, footer.php
-    css/style.css, js/main.js, images/
-    cache/                    saved copies of fetched pages (6 hours)
+```powershell
+npm install
+npm run dev
+```
 
-## How it works
-Each page downloads the matching page of the source site, removes the old header, menu and footer,
-makes picture and link addresses full addresses, points links between pages to the new pages,
-and shows the text and pictures inside the new design. A saved copy is used for 6 hours; if the
-source site is down, the last saved copy is shown.
+Vite prints the local development URL. To create and preview a production build:
 
-## Tips
-- Refresh one page now: `about.php?refresh=change-me` (change the key in includes/config.php).
-- If a page shows extra or missing parts, put the content block's XPath as the third value of that page in `pages()` (includes/config.php).
+```powershell
+npm run build
+npm run preview
+```
 
+The production files are written to `dist/`.
 
+## Deploy
 
+Deploy the contents of `dist/` to a static web host. For Apache, copy the included `.htaccess` into the deployed document root as well; it serves the React app for direct visits to page routes and legacy `.php` URLs. Other hosts need an equivalent fallback that serves `index.html` for app routes.
 
-cd C:\symhealthphp\symhealth-php
-php -S 127.0.0.1:8000
+## Project structure
+
+- `src/App.jsx` — shared React layout, routing, and interactive controls
+- `src/pages/` — one React component per page, including the home page
+- `src/components/` — shared navigation links, page layout, galleries, and cached-content renderer
+- `src/data.js` — navigation, shared dates, assets, and content for pages without a saved source page
+- `src/styles.css` — responsive styles, including light/dark themes
+- `images/` — local university logo
+- `cache/` — saved source pages used to preserve their original page content and images
+- `index.html` — Vite application entry point
+
+All page entry points and page views are React components. The former PHP pages and server helpers have been removed; saved page content remains in `cache/` and is rendered by React. Photographs and archive documents continue to use their original public asset URLs. The included Apache rewrite only sends app routes (and old `.php` bookmarks) to the React entry point; no PHP runtime is required. The site includes a searchable page directory, responsive dropdown navigation, theme switcher, campus photo viewer, collapsible FAQs, share action, conference archive and reduced-motion support. Registration and abstract submissions are closed because the 2026 event has passed.
