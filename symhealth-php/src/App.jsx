@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import logo from '../images/symbiosis-symhealth-logo.png';
 import SmartLink from './components/SmartLink.jsx';
@@ -31,11 +31,6 @@ const pageComponents = {
   videos: lazy(() => import('./pages/Videos.jsx')),
   'where-to-stay': lazy(() => import('./pages/WhereToStay.jsx')),
 };
-
-const localPages = [
-  { title: 'Home', path: '/' },
-  ...Object.entries(pageData).map(([slug, page]) => ({ title: page.title, path: `/${slug}` })),
-];
 
 const navigationByLabel = new Map(navigation.map((item) => [item.label, item]));
 const reportLinks = new Map(navigationByLabel.get('Reports').children.map((item) => [item.label, item]));
@@ -122,14 +117,12 @@ function NavigationItems({ items, id, pathname }) {
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/' || location.pathname.toLowerCase() === '/index.php';
 
   useEffect(() => {
     setMenuOpen(false);
-    setSearchOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -158,15 +151,6 @@ function Header() {
     return () => window.removeEventListener('scroll', updateScrollState);
   }, [isHome]);
 
-  useEffect(() => {
-    if (!searchOpen) return undefined;
-    const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setSearchOpen(false);
-    };
-    window.addEventListener('keydown', closeOnEscape);
-    return () => window.removeEventListener('keydown', closeOnEscape);
-  }, [searchOpen]);
-
   if (isHome) {
     return (
       <div className={`home-header-shell${isScrolled ? ' is-scrolled' : ''}${menuOpen ? ' is-open' : ''}`}>
@@ -189,9 +173,6 @@ function Header() {
               <NavigationItems items={headerNavigation} id="home-top-navigation" pathname={location.pathname} />
             </nav>
             <div className="header-actions home-header-actions">
-              <button className="icon-button" type="button" aria-label="Search this website" onClick={() => setSearchOpen(true)}>
-                <span aria-hidden="true">⌕</span>
-              </button>
               <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="home-top-navigation" onClick={() => setMenuOpen((open) => !open)}>
                 <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
               </button>
@@ -213,7 +194,6 @@ function Header() {
             </button>
           </div>
         </nav>
-        {searchOpen && <SearchDialog onClose={() => setSearchOpen(false)} />}
       </div>
     );
   }
@@ -243,9 +223,6 @@ function Header() {
           </SmartLink>
           <div className="header-actions">
             <SmartLink to="/contact-us" className="header-contact">Contact us <span aria-hidden="true">↗</span></SmartLink>
-            <button className="icon-button" type="button" aria-label="Search this website" onClick={() => setSearchOpen(true)}>
-              <span aria-hidden="true">⌕</span>
-            </button>
             <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen((open) => !open)}>
               <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
             </button>
@@ -257,42 +234,7 @@ function Header() {
           <NavigationItems items={headerNavigation} id="primary-navigation" pathname={location.pathname} />
         </div>
       </nav>
-      {searchOpen && <SearchDialog onClose={() => setSearchOpen(false)} />}
     </>
-  );
-}
-
-function SearchDialog({ onClose }) {
-  const [query, setQuery] = useState('');
-  const inputRef = useRef(null);
-  const matches = localPages.filter((page) => page.title.toLowerCase().includes(query.trim().toLowerCase())).slice(0, 8);
-
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
-  return (
-    <div className="dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
-      <section className="search-dialog" role="dialog" aria-modal="true" aria-labelledby="search-title">
-        <div className="dialog-heading">
-          <div><span className="eyebrow">Explore</span><h2 id="search-title">Search the site</h2></div>
-          <button className="icon-button" type="button" aria-label="Close search" onClick={onClose}>×</button>
-        </div>
-        <label className="search-field">
-          <span className="sr-only">Search pages</span>
-          <span aria-hidden="true">⌕</span>
-          <input ref={inputRef} type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Try “registration” or “venue”" />
-          <kbd>ESC</kbd>
-        </label>
-        <div className="search-results">
-          {matches.length ? matches.map((page) => (
-            <SmartLink to={page.path} key={page.path} onClick={onClose}>
-              <span>{page.title}</span><span aria-hidden="true">↗</span>
-            </SmartLink>
-          )) : <p className="empty-result">No pages match “{query}”. Try another search.</p>}
-        </div>
-      </section>
-    </div>
   );
 }
 
