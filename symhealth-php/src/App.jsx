@@ -47,11 +47,11 @@ const participateNavigation = {
   ],
 };
 const homeNavigation = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
+  navigationByLabel.get('Home'),
+  { ...navigationByLabel.get('About Us'), label: 'About' },
   navigationByLabel.get('SYMHEALTH 2026'),
-  { label: 'Speakers', to: '/speaker_profile' },
-  { label: 'Papers', to: '/call_for_papers' },
+  navigationByLabel.get('Speakers'),
+  { ...navigationByLabel.get('Call for Papers'), label: 'Papers' },
   participateNavigation,
 ];
 const compactNavigation = [
