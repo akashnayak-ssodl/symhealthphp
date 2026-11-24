@@ -84,7 +84,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <section className="quick-facts" aria-label="Conference highlights">
+      <section className="quick-facts" id="highlights" aria-label="Conference highlights">
         <div className="container facts-grid">
           <div><strong>25 years</strong><span>conference legacy</span></div>
           <div><strong>1,400+</strong><span>delegates each year</span></div>

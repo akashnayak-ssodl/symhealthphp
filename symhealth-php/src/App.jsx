@@ -37,15 +37,85 @@ const localPages = [
   ...Object.entries(pageData).map(([slug, page]) => ({ title: page.title, path: `/${slug}` })),
 ];
 
+const navigationByLabel = new Map(navigation.map((item) => [item.label, item]));
+const participateNavigation = {
+  label: 'Participate',
+  children: [
+    { label: 'Registration', description: 'Fees, categories, how to register', to: '/registration-fees' },
+    { label: 'Sponsorship', description: 'Packages and benefits', to: '/associates' },
+    { label: 'Contact us', description: 'Queries and support', to: '/contact-us' },
+  ],
+};
+const homeNavigation = [
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  navigationByLabel.get('SYMHEALTH 2026'),
+  { label: 'Speakers', to: '/speaker_profile' },
+  { label: 'Papers', to: '/call_for_papers' },
+  participateNavigation,
+];
+const compactNavigation = [
+  ...homeNavigation.slice(0, 2),
+  ...homeNavigation.slice(3),
+  navigationByLabel.get('Reports'),
+  navigationByLabel.get('Gallery'),
+];
+
+function NavigationItems({ items, id, pathname }) {
+  return (
+    <ul id={id} className="nav-list">
+      {items.map((item) => (
+        <li className="nav-item" key={item.label}>
+          {item.children ? (
+            <details className="nav-dropdown">
+              <summary>{item.label}<span className="chevron" aria-hidden="true">⌄</span></summary>
+              <ul className="dropdown-list">
+                {item.children.map((child) => (
+                  <li key={child.label}>
+                    <SmartLink to={child.to}>
+                      <span>{child.label}</span>
+                      {child.description && <small>{child.description}</small>}
+                    </SmartLink>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <SmartLink to={item.to} aria-current={pathname === item.to ? 'page' : undefined}>{item.label}</SmartLink>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function Header({ theme, onThemeChange }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === '/' || location.pathname.toLowerCase() === '/index.php';
 
   useEffect(() => {
     setMenuOpen(false);
     setSearchOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (!isHome) {
+      setIsScrolled(false);
+      return undefined;
+    }
+    const updateScrollState = () => {
+      setIsScrolled((current) => {
+        const next = window.scrollY > 90;
+        return current === next ? current : next;
+      });
+    };
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollState);
+  }, [isHome]);
 
   useEffect(() => {
     if (!searchOpen) return undefined;
@@ -55,6 +125,57 @@ function Header({ theme, onThemeChange }) {
     window.addEventListener('keydown', closeOnEscape);
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, [searchOpen]);
+
+  if (isHome) {
+    return (
+      <div className={`home-header-shell${isScrolled ? ' is-scrolled' : ''}${menuOpen ? ' is-open' : ''}`}>
+        <header className="site-header home-masthead">
+          <div className="container home-masthead-inner">
+            <SmartLink to="/" className="university-brand home-university-brand" aria-label="Symbiosis International home">
+              <img src={logo} alt="Symbiosis International (Deemed University)" />
+            </SmartLink>
+            <SmartLink to="/" className="event-brand home-event-brand" aria-label="SYMHEALTH 2026 home">
+              <img src={eventLogo} alt="" />
+              <span className="event-brand-copy">
+                <strong>SYMHEALTH <span>2026</span></strong>
+                <small>SMART HEALTHCARE · LAVALE, PUNE</small>
+              </span>
+            </SmartLink>
+            <nav className="home-top-nav" aria-label="Conference navigation">
+              <NavigationItems items={homeNavigation} id="home-top-navigation" pathname={location.pathname} />
+            </nav>
+            <div className="header-actions home-header-actions">
+              <button className="icon-button" type="button" aria-label="Search this website" onClick={() => setSearchOpen(true)}>
+                <span aria-hidden="true">⌕</span>
+              </button>
+              <button className="icon-button theme-toggle" type="button" aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} onClick={onThemeChange}>
+                <span aria-hidden="true">{theme === 'dark' ? '☼' : '◐'}</span>
+              </button>
+              <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="home-top-navigation" onClick={() => setMenuOpen((open) => !open)}>
+                <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
+              </button>
+            </div>
+          </div>
+        </header>
+        <nav className="compact-home-nav" aria-label="Conference navigation">
+          <div className="container compact-home-inner">
+            <SmartLink to="/" className="compact-event-brand" aria-label="SYMHEALTH 2026 home">
+              <img src={eventLogo} alt="" />
+              <strong>SYMHEALTH <span>2026</span></strong>
+            </SmartLink>
+            <div className="compact-home-links">
+              <NavigationItems items={compactNavigation} id="compact-home-navigation" pathname={location.pathname} />
+            </div>
+            <a href="#highlights" className="highlights-link">View highlights</a>
+            <button className="menu-toggle compact-menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="compact-home-navigation" onClick={() => setMenuOpen((open) => !open)}>
+              <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
+            </button>
+          </div>
+        </nav>
+        {searchOpen && <SearchDialog onClose={() => setSearchOpen(false)} />}
+      </div>
+    );
+  }
 
   return (
     <>
@@ -80,7 +201,7 @@ function Header({ theme, onThemeChange }) {
             </span>
           </SmartLink>
           <div className="header-actions">
-            <SmartLink to="/contact-us" className="header-contact">Contact</SmartLink>
+            <SmartLink to="/contact-us" className="header-contact">Contact us <span aria-hidden="true">↗</span></SmartLink>
             <button className="icon-button" type="button" aria-label="Search this website" onClick={() => setSearchOpen(true)}>
               <span aria-hidden="true">⌕</span>
             </button>
@@ -95,24 +216,7 @@ function Header({ theme, onThemeChange }) {
       </header>
       <nav className={`primary-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
         <div className="container nav-inner">
-          <ul id="primary-navigation" className="nav-list">
-            {navigation.map((item) => (
-              <li className="nav-item" key={item.label}>
-                {item.children ? (
-                  <details className="nav-dropdown">
-                    <summary>{item.label}<span className="chevron" aria-hidden="true">⌄</span></summary>
-                    <ul className="dropdown-list">
-                      {item.children.map((child) => (
-                        <li key={child.label}><SmartLink to={child.to}>{child.label}</SmartLink></li>
-                      ))}
-                    </ul>
-                  </details>
-                ) : (
-                  <SmartLink to={item.to} aria-current={location.pathname === item.to ? 'page' : undefined}>{item.label}</SmartLink>
-                )}
-              </li>
-            ))}
-          </ul>
+          <NavigationItems items={navigation} id="primary-navigation" pathname={location.pathname} />
         </div>
       </nav>
       {searchOpen && <SearchDialog onClose={() => setSearchOpen(false)} />}

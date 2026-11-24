@@ -212,6 +212,10 @@ export const navigation = [
     { label: 'Registration Fees', to: '/registration-fees' },
     { label: 'Guidelines to Register', to: '/registration-guidelines' },
   ] },
+  { label: 'Sponsorship', children: [
+    { label: 'Associates', to: '/associates' },
+    { label: 'Media Partners', to: '/media-partners' },
+  ] },
   { label: 'Reports', children: [
     { label: 'Connexions 2018', to: `${assetBase}pdf/Connexions_2018.pdf` },
     { label: 'SYMHEALTH 2018 (4 May)', to: `${assetBase}pdf/SYMHEALTH%202018%20Report_4th%20May.pdf` },
@@ -222,10 +226,6 @@ export const navigation = [
     { label: 'SYMHEALTH 2023', to: `${assetBase}pdf/Rappoteur%20report%20SymHealth%202023.docx.pdf` },
     { label: 'SYMHEALTH 2024', to: `${assetBase}pdf/SYMHEALTH%202024%20REPORT.pdf` },
     { label: 'SYMHEALTH 2025', to: `${assetBase}pdf/SYMHEALTH%20REPORT2025.pdf` },
-  ] },
-  { label: 'Sponsorship', children: [
-    { label: 'Associates', to: '/associates' },
-    { label: 'Media Partners', to: '/media-partners' },
   ] },
   { label: 'Gallery', children: [
     { label: 'Photos', to: '/photos' },
