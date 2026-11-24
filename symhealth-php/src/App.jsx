@@ -38,53 +38,77 @@ const localPages = [
 ];
 
 const navigationByLabel = new Map(navigation.map((item) => [item.label, item]));
-const participateNavigation = {
-  label: 'Participate',
+const reportLinks = new Map(navigationByLabel.get('Reports').children.map((item) => [item.label, item]));
+const reportNavigation = {
+  label: 'REPORT',
   children: [
-    { label: 'Registration', description: 'Fees, categories, how to register', to: '/registration-fees' },
-    { label: 'Sponsorship', description: 'Packages and benefits', to: '/associates' },
-    { label: 'Contact us', description: 'Queries and support', to: '/contact-us' },
+    reportLinks.get('Connexions 2018'),
+    {
+      label: 'SYMHEALTH 2018',
+      children: [
+        reportLinks.get('SYMHEALTH 2018 (4 May)'),
+        reportLinks.get('SYMHEALTH 2018 (5 May)'),
+      ],
+    },
+    reportLinks.get('SYMHEALTH 2019'),
+    {
+      label: 'SYMHEALTH 2022',
+      children: [
+        reportLinks.get('SYMHEALTH 2022 (22 Apr)'),
+        reportLinks.get('SYMHEALTH 2022 (23 Apr)'),
+      ],
+    },
+    reportLinks.get('SYMHEALTH 2023'),
+    reportLinks.get('SYMHEALTH 2024'),
+    reportLinks.get('SYMHEALTH 2025'),
   ],
 };
-const homeNavigation = [
-  navigationByLabel.get('Home'),
-  { ...navigationByLabel.get('About Us'), label: 'About' },
+const headerNavigation = [
+  { ...navigationByLabel.get('Home'), icon: 'home' },
+  { ...navigationByLabel.get('About Us'), label: 'ABOUT US' },
   navigationByLabel.get('SYMHEALTH 2026'),
-  navigationByLabel.get('Speakers'),
-  { ...navigationByLabel.get('Call for Papers'), label: 'Papers' },
-  participateNavigation,
+  { ...navigationByLabel.get('Speakers'), label: 'SPEAKERS' },
+  { ...navigationByLabel.get('Call for Papers'), label: 'CALL FOR PAPER' },
+  { ...navigationByLabel.get('Registration'), label: 'REGISTRATION' },
+  reportNavigation,
+  { ...navigationByLabel.get('Sponsorship'), label: 'SPONSORSHIP' },
+  { ...navigationByLabel.get('Gallery'), label: 'GALLERY' },
+  { label: 'CONTACT US', to: '/contact-us' },
 ];
-const compactNavigation = [
-  ...homeNavigation.slice(0, 2),
-  ...homeNavigation.slice(3),
-  navigationByLabel.get('Reports'),
-  navigationByLabel.get('Gallery'),
-];
+
+function NavigationEntry({ item, pathname }) {
+  if (item.children) {
+    return (
+      <li className="nav-item" key={item.label}>
+        <details className="nav-dropdown">
+          <summary>{item.label}<span className="chevron" aria-hidden="true" /></summary>
+          <ul className="dropdown-list">
+            {item.children.map((child) => <NavigationEntry item={child} pathname={pathname} key={child.label} />)}
+          </ul>
+        </details>
+      </li>
+    );
+  }
+  return (
+    <li className="nav-item" key={item.label}>
+      <SmartLink to={item.to} aria-current={pathname === item.to ? 'page' : undefined}>
+        {item.icon === 'home' ? (
+          <>
+            <svg className="home-nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 10.8 12 3l9 7.8M5.5 9.2V21h13V9.2M9.5 21v-7h5v7" />
+            </svg>
+            <span className="sr-only">{item.label}</span>
+          </>
+        ) : item.label}
+      </SmartLink>
+    </li>
+  );
+}
 
 function NavigationItems({ items, id, pathname }) {
   return (
     <ul id={id} className="nav-list">
-      {items.map((item) => (
-        <li className="nav-item" key={item.label}>
-          {item.children ? (
-            <details className="nav-dropdown">
-              <summary>{item.label}<span className="chevron" aria-hidden="true">⌄</span></summary>
-              <ul className="dropdown-list">
-                {item.children.map((child) => (
-                  <li key={child.label}>
-                    <SmartLink to={child.to}>
-                      <span>{child.label}</span>
-                      {child.description && <small>{child.description}</small>}
-                    </SmartLink>
-                  </li>
-                ))}
-              </ul>
-            </details>
-          ) : (
-            <SmartLink to={item.to} aria-current={pathname === item.to ? 'page' : undefined}>{item.label}</SmartLink>
-          )}
-        </li>
-      ))}
+      {items.map((item) => <NavigationEntry item={item} pathname={pathname} key={item.label} />)}
     </ul>
   );
 }
@@ -129,6 +153,9 @@ function Header({ theme, onThemeChange }) {
   if (isHome) {
     return (
       <div className={`home-header-shell${isScrolled ? ' is-scrolled' : ''}${menuOpen ? ' is-open' : ''}`}>
+        <div className="home-utility-strip">
+          <div className="home-utility-inner">Symbiosis International University, Lavale.</div>
+        </div>
         <header className="site-header home-masthead">
           <div className="container home-masthead-inner">
             <SmartLink to="/" className="university-brand home-university-brand" aria-label="Symbiosis International home">
@@ -142,7 +169,7 @@ function Header({ theme, onThemeChange }) {
               </span>
             </SmartLink>
             <nav className="home-top-nav" aria-label="Conference navigation">
-              <NavigationItems items={homeNavigation} id="home-top-navigation" pathname={location.pathname} />
+              <NavigationItems items={headerNavigation} id="home-top-navigation" pathname={location.pathname} />
             </nav>
             <div className="header-actions home-header-actions">
               <button className="icon-button" type="button" aria-label="Search this website" onClick={() => setSearchOpen(true)}>
@@ -164,7 +191,7 @@ function Header({ theme, onThemeChange }) {
               <strong>SYMHEALTH <span>2026</span></strong>
             </SmartLink>
             <div className="compact-home-links">
-              <NavigationItems items={compactNavigation} id="compact-home-navigation" pathname={location.pathname} />
+              <NavigationItems items={headerNavigation} id="compact-home-navigation" pathname={location.pathname} />
             </div>
             <a href="#highlights" className="highlights-link">View highlights</a>
             <button className="menu-toggle compact-menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="compact-home-navigation" onClick={() => setMenuOpen((open) => !open)}>
@@ -216,7 +243,7 @@ function Header({ theme, onThemeChange }) {
       </header>
       <nav className={`primary-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
         <div className="container nav-inner">
-          <NavigationItems items={navigation} id="primary-navigation" pathname={location.pathname} />
+          <NavigationItems items={headerNavigation} id="primary-navigation" pathname={location.pathname} />
         </div>
       </nav>
       {searchOpen && <SearchDialog onClose={() => setSearchOpen(false)} />}
