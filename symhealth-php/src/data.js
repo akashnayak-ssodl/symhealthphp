@@ -253,6 +253,29 @@ export const campusPhotos = [
   { src: `${assetBase}Lavale.jpg`, alt: 'Lavale campus grounds' },
 ];
 
+export const associateLogos = [
+  ['Public Health Foundation of India', 'PHFI-Logo-ENG-HINDI.jpg'],
+  ['IIT Bombay', 'IIT-Bombay-logo.jpg'],
+  ['Wellness Solutions', 'Wellness-Solutions.png'],
+  ['PVCON', 'pvcon.png'],
+  ['Avails', 'avails-parts.png'],
+  ['Yashoda', 'Yashoda-Logo.jpg'],
+  ['Senses', 'senses.jpg'],
+  ['SJRI', 'SJRI.jpg'],
+  ['Priyankka', 'priyankka.png'],
+  ['Sairaj Digital', 'Sairaj-Digital-Logo.png'],
+  ['Ansell', 'Hand-Protection-Partner-Ansell.jpg'],
+  ['Regulus', 'regulus-logo.png'],
+  ['Shwas 4 U', 'Shwas-4-U.jpg'],
+  ['Kalagaar', 'Kalagaar-Logo.jpg'],
+  ['Indus', 'Indus_logo-PNG.png'],
+  ['Gupte Hospital', 'Gupte-Hospital-logo.jpg'],
+  ['Bagic', 'Bagic-Logo.png'],
+  ['ACME', 'acme-big.png'],
+  ['Dozee', 'Dozee-Logo-Blue.png'],
+  ['The George Institute', 'George-Institute.png'],
+];
+
 export const reports = [
   ['Connexions 2018', `${assetBase}pdf/Connexions_2018.pdf`],
   ['SYMHEALTH 2018', `${assetBase}pdf/SYMHEALTH%202018%20Report_4th%20May.pdf`],

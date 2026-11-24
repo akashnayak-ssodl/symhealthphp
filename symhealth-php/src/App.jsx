@@ -61,7 +61,10 @@ function Header({ theme, onThemeChange }) {
       <div className="utility-bar">
         <div className="container utility-inner">
           <span>Symbiosis International (Deemed University)</span>
-          <a href="mailto:symhealthregistration@siu.edu.in">symhealthregistration@siu.edu.in</a>
+          <div className="utility-links">
+            <span>17–18 April 2026 <i aria-hidden="true">·</i> Lavale, Pune</span>
+            <a href="mailto:symhealthregistration@siu.edu.in">symhealthregistration@siu.edu.in</a>
+          </div>
         </div>
       </div>
       <header className="site-header">
@@ -70,9 +73,14 @@ function Header({ theme, onThemeChange }) {
             <img src={logo} alt="Symbiosis International (Deemed University)" />
           </SmartLink>
           <SmartLink to="/" className="event-brand" aria-label="SYMHEALTH 2026 home">
-            <img src={eventLogo} alt="SYMHEALTH 2026" />
+            <img src={eventLogo} alt="" />
+            <span className="event-brand-copy">
+              <strong>SYMHEALTH <span>2026</span></strong>
+              <small>SMART HEALTHCARE · LAVALE, PUNE</small>
+            </span>
           </SmartLink>
           <div className="header-actions">
+            <SmartLink to="/contact-us" className="header-contact">Contact</SmartLink>
             <button className="icon-button" type="button" aria-label="Search this website" onClick={() => setSearchOpen(true)}>
               <span aria-hidden="true">⌕</span>
             </button>

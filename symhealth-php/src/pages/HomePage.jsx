@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CampusGallery from '../components/CampusGallery.jsx';
+import PartnerCarousel from '../components/PartnerCarousel.jsx';
 import SmartLink from '../components/SmartLink.jsx';
 import { assetBase, importantDates, reports } from '../data.js';
 
@@ -148,8 +149,8 @@ export default function HomePage() {
       </section>
       <section className="partners-section section-space">
         <div className="container">
-          <div className="section-heading"><div><span className="eyebrow">Our partners</span><h2>Organizations behind the community.</h2></div><p>Associates and media partners who have supported SYMHEALTH.</p></div>
-          <img className="partner-logos" src={`${assetBase}images/brands.jpg`} alt="SYMHEALTH partner and associate logos" loading="lazy" />
+          <div className="section-heading"><div><span className="eyebrow">Our partners</span><h2>Partners and associates.</h2></div><p>Organizations who have supported SYMHEALTH.</p></div>
+          <PartnerCarousel />
         </div>
       </section>
       <section className="closing-cta">
