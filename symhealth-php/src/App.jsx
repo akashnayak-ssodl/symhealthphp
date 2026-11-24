@@ -83,7 +83,7 @@ function NavigationEntry({ item, pathname }) {
     return (
       <li className="nav-item" key={item.label}>
         <details className="nav-dropdown">
-          <summary>{item.label}<span className="chevron" aria-hidden="true" /></summary>
+          <summary>{item.label}</summary>
           <ul className="dropdown-list">
             {item.children.map((child) => <NavigationEntry item={child} pathname={pathname} key={child.label} />)}
           </ul>
