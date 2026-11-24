@@ -92,7 +92,7 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 .primary-nav { position: sticky; z-index: 20; top: 0; color: var(--nav-text); background: #71151f; box-shadow: 0 4px 12px rgba(45, 10, 14, .12); }
 .nav-list { display: flex; min-height: 60px; align-items: stretch; justify-content: space-between; gap: 0; margin: 0; padding: 0; list-style: none; }
 .nav-item { position: relative; display: flex; align-items: stretch; }
-.nav-item > a, .nav-dropdown > summary { display: flex; min-height: 60px; align-items: center; gap: 7px; padding: 0 12px; border: 0; color: inherit; background: transparent; cursor: pointer; font-family: Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: 700; text-decoration: none; text-transform: uppercase; transition: background .2s, color .2s; white-space: nowrap; }
+.nav-item > a, .nav-dropdown > summary { display: flex; min-height: 60px; align-items: center; gap: 7px; padding: 0 12px; border: 0; color: inherit; background: transparent; cursor: pointer; font-family: Georgia, 'Times New Roman', serif; font-size: 13px; font-weight: 800; text-decoration: none; text-transform: uppercase; transition: background .2s, color .2s; white-space: nowrap; }
 .nav-dropdown { display: flex; align-items: stretch; }
 .nav-dropdown > summary { list-style: none; }
 .nav-dropdown > summary::-webkit-details-marker { display: none; }
@@ -117,7 +117,7 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 .hero-media, .hero-shade { position: absolute; inset: 0; }
 .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.1s ease; }
 .hero-media img.is-active { opacity: 1; }
-.hero-shade { background: linear-gradient(90deg, rgba(48, 10, 15, .94) 0%, rgba(84, 15, 23, .82) 52%, rgba(73, 11, 18, .38) 100%), linear-gradient(0deg, rgba(39, 9, 14, .44), transparent 46%); }
+.hero-shade { background: linear-gradient(90deg, rgba(77, 20, 25, .88) 0%, rgba(130, 32, 40, .72) 52%, rgba(112, 25, 34, .26) 100%), linear-gradient(0deg, rgba(39, 9, 14, .34), transparent 46%); }
 .hero-content { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; padding-block: 82px 125px; }
 .hero-copy { max-width: 690px; }
 .event-status { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 28px; padding: 8px 13px; border: 1px solid rgba(255,255,255,.24); border-radius: 100px; background: rgba(255,255,255,.1); font-size: 12px; }
@@ -499,7 +499,7 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 .home-event-brand .event-brand-copy small { display: none; }
 .home-top-nav { flex: 1; min-width: 0; margin-left: 12px; }
 .home-top-nav .nav-list { min-height: 76px; justify-content: space-between; gap: 4px; }
-.home-top-nav .nav-item > a, .home-top-nav .nav-dropdown > summary { min-height: 50px; padding-inline: 5px; border-radius: 2px; color: #57141d; font-family: Georgia, 'Times New Roman', serif; font-size: 11px; font-weight: 700; }
+.home-top-nav .nav-item > a, .home-top-nav .nav-dropdown > summary { min-height: 50px; padding-inline: 5px; border-radius: 2px; color: #57141d; font-family: Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: 800; }
 .home-top-nav .nav-item > a { text-transform: uppercase; }
 .home-top-nav .nav-item:first-child > a { width: 40px; justify-content: center; }
 .home-nav-icon { display: block; width: 16px; height: 16px; fill: currentColor; }
@@ -524,7 +524,7 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 .compact-event-brand strong { color: #57141d; font-size: 12px; }
 .compact-home-links { flex: 1; }
 .compact-home-links .nav-list { min-height: 70px; justify-content: space-between; gap: 4px; }
-.compact-home-links .nav-item > a, .compact-home-links .nav-dropdown > summary { min-height: 56px; padding-inline: 5px; border-radius: 2px; color: #57141d; font-family: Georgia, 'Times New Roman', serif; font-size: 11px; font-weight: 700; }
+.compact-home-links .nav-item > a, .compact-home-links .nav-dropdown > summary { min-height: 56px; padding-inline: 5px; border-radius: 2px; color: #57141d; font-family: Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: 800; }
 .compact-home-links .nav-item > a { text-transform: uppercase; }
 .compact-home-links .nav-item:first-child > a { width: 36px; justify-content: center; }
 .compact-home-links .nav-item > a:hover, .compact-home-links .nav-dropdown > summary:hover { background: rgba(189,31,45,.08); }
