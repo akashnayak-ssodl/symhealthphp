@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import logo from '../images/symbiosis-symhealth-logo.png';
 import SmartLink from './components/SmartLink.jsx';
@@ -78,14 +78,26 @@ const headerNavigation = [
   { label: 'CONTACT US', to: '/contact-us' },
 ];
 
-function NavigationEntry({ item, pathname }) {
+function NavigationEntry({ item, pathname, dropdownsDismissedRef }) {
   if (item.children) {
     return (
       <li className="nav-item" key={item.label}>
-        <details className="nav-dropdown">
-          <summary>{item.label}</summary>
+        <details
+          className="nav-dropdown"
+          onPointerEnter={(event) => {
+            if (event.pointerType === 'mouse' && !dropdownsDismissedRef.current) event.currentTarget.open = true;
+          }}
+          onPointerLeave={(event) => {
+            if (event.pointerType === 'mouse') event.currentTarget.open = false;
+          }}
+        >
+          <summary onClick={(event) => {
+            if (event.detail > 0 && window.matchMedia('(hover: hover)').matches) event.preventDefault();
+          }}>
+            {item.label}
+          </summary>
           <ul className="dropdown-list">
-            {item.children.map((child) => <NavigationEntry item={child} pathname={pathname} key={child.label} />)}
+            {item.children.map((child) => <NavigationEntry item={child} pathname={pathname} dropdownsDismissedRef={dropdownsDismissedRef} key={child.label} />)}
           </ul>
         </details>
       </li>
@@ -107,10 +119,10 @@ function NavigationEntry({ item, pathname }) {
   );
 }
 
-function NavigationItems({ items, id, pathname }) {
+function NavigationItems({ items, id, pathname, dropdownsDismissedRef }) {
   return (
     <ul id={id} className="nav-list">
-      {items.map((item) => <NavigationEntry item={item} pathname={pathname} key={item.label} />)}
+      {items.map((item) => <NavigationEntry item={item} pathname={pathname} dropdownsDismissedRef={dropdownsDismissedRef} key={item.label} />)}
     </ul>
   );
 }
@@ -118,21 +130,48 @@ function NavigationItems({ items, id, pathname }) {
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [dropdownsDismissed, setDropdownsDismissed] = useState(false);
+  const dropdownsDismissedRef = useRef(false);
   const location = useLocation();
   const isHome = location.pathname === '/' || location.pathname.toLowerCase() === '/index.php';
 
   useEffect(() => {
     setMenuOpen(false);
+    dropdownsDismissedRef.current = false;
+    setDropdownsDismissed(false);
   }, [location.pathname]);
 
   useEffect(() => {
     const closeDropdowns = (event) => {
+      dropdownsDismissedRef.current = false;
+      setDropdownsDismissed(false);
       document.querySelectorAll('.nav-dropdown[open]').forEach((dropdown) => {
         if (!dropdown.contains(event.target)) dropdown.open = false;
       });
     };
+    const closeDropdownsOnScroll = () => {
+      dropdownsDismissedRef.current = true;
+      document.querySelectorAll('.home-header-shell .nav-dropdown[open]').forEach((dropdown) => {
+        dropdown.open = false;
+      });
+      setDropdownsDismissed(true);
+    };
+    const resumeDropdowns = () => {
+      dropdownsDismissedRef.current = false;
+      setDropdownsDismissed(false);
+    };
     document.addEventListener('pointerdown', closeDropdowns);
-    return () => document.removeEventListener('pointerdown', closeDropdowns);
+    document.addEventListener('pointermove', resumeDropdowns, { passive: true });
+    document.addEventListener('keydown', resumeDropdowns);
+    document.addEventListener('scroll', closeDropdownsOnScroll, { capture: true, passive: true });
+    window.addEventListener('scroll', closeDropdownsOnScroll, { passive: true });
+    return () => {
+      document.removeEventListener('pointerdown', closeDropdowns);
+      document.removeEventListener('pointermove', resumeDropdowns);
+      document.removeEventListener('keydown', resumeDropdowns);
+      document.removeEventListener('scroll', closeDropdownsOnScroll, true);
+      window.removeEventListener('scroll', closeDropdownsOnScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -152,7 +191,7 @@ function Header() {
   }, [isHome]);
 
   return (
-    <div className={`home-header-shell${isHome ? '' : ' page-header-shell'}${isScrolled ? ' is-scrolled' : ''}${menuOpen ? ' is-open' : ''}`}>
+    <div className={`home-header-shell${isHome ? '' : ' page-header-shell'}${isScrolled ? ' is-scrolled' : ''}${menuOpen ? ' is-open' : ''}${dropdownsDismissed ? ' dropdowns-dismissed' : ''}`}>
       <div className="home-utility-strip">
         <div className="home-utility-inner">Symbiosis International University, Lavale.</div>
       </div>
@@ -169,7 +208,7 @@ function Header() {
             </span>
           </SmartLink>
           <nav className="home-top-nav" aria-label="Conference navigation">
-            <NavigationItems items={headerNavigation} id="home-top-navigation" pathname={location.pathname} />
+            <NavigationItems items={headerNavigation} id="home-top-navigation" pathname={location.pathname} dropdownsDismissedRef={dropdownsDismissedRef} />
           </nav>
           <div className="header-actions home-header-actions">
             <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="home-top-navigation" onClick={() => setMenuOpen((open) => !open)}>
@@ -185,7 +224,7 @@ function Header() {
             <strong>SYMHEALTH <span>2026</span></strong>
           </SmartLink>
           <div className="compact-home-links">
-            <NavigationItems items={headerNavigation} id="compact-home-navigation" pathname={location.pathname} />
+            <NavigationItems items={headerNavigation} id="compact-home-navigation" pathname={location.pathname} dropdownsDismissedRef={dropdownsDismissedRef} />
           </div>
           <button className="menu-toggle compact-menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="compact-home-navigation" onClick={() => setMenuOpen((open) => !open)}>
             <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>

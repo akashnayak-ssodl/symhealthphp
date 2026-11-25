@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import PartnerCarousel from '../components/PartnerCarousel.jsx';
-import { assetBase, importantDates } from '../data.js';
+import { imageBase, importantDates } from '../data.js';
 
 const heroImages = [
-  `${assetBase}SIU%20lavale.jpg`,
-  `${assetBase}SIU%202.jpg`,
-  `${assetBase}SIU%20building.jpg`,
-  `${assetBase}Lavale.jpg`,
-  `${assetBase}banner45.jpg`,
+  `${imageBase}SIU%20lavale.jpg`,
+  `${imageBase}SIU%202.jpg`,
+  `${imageBase}SIU%20building.jpg`,
+  `${imageBase}Lavale.jpg`,
+  `${imageBase}banner45.jpg`,
 ];
 
 function Hero() {

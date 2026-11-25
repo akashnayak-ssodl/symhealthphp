@@ -1,5 +1,5 @@
 import PageContent from '../components/PageContent.jsx';
-import { assetBase, associateLogos, pageData } from '../data.js';
+import { associateLogos, imageBase, pageData } from '../data.js';
 import SmartLink from '../components/SmartLink.jsx';
 
 export default function Associates() {
@@ -11,7 +11,7 @@ export default function Associates() {
         <div className="legacy-associate-grid">
           {associateLogos.map(([name, image]) => (
             <figure className="legacy-associate" key={name}>
-              <img src={`${assetBase}associate/${encodeURIComponent(image)}`} alt={name} loading="lazy" />
+              <img src={`${imageBase}associate/${encodeURIComponent(image)}`} alt={name} loading="lazy" />
               <figcaption>{name}</figcaption>
             </figure>
           ))}

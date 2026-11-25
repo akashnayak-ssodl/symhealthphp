@@ -425,7 +425,8 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 .footer-bottom a:hover { color: #fff; }
 
 @media (min-width: 1000px) {
-  .nav-dropdown:hover .dropdown-list, .nav-dropdown:focus-within .dropdown-list { display: block; }
+  .nav-dropdown[open] > .dropdown-list { display: block; }
+  .home-header-shell.dropdowns-dismissed .nav-dropdown:hover .dropdown-list, .home-header-shell.dropdowns-dismissed .nav-dropdown:focus-within .dropdown-list { display: none; }
 }
 
 @media (min-width: 981px) {

@@ -47,7 +47,14 @@ function extractSafeContent(source) {
       const sourcePath = element.getAttribute('data-src') || element.getAttribute('data-lazy-src') || element.getAttribute('src');
       if (sourcePath) {
         const imageUrl = new URL(sourcePath, sourceBase);
-        if (imageUrl.protocol === 'http:' || imageUrl.protocol === 'https:') element.setAttribute('src', imageUrl.href);
+        if (imageUrl.hostname === new URL(sourceBase).hostname && imageUrl.pathname.startsWith('/assets/')) {
+          const localPath = imageUrl.pathname
+            .split('/')
+            .filter(Boolean)
+            .map((segment) => decodeURIComponent(segment).replace(/[<>:"|?*]/g, '_'))
+            .join('/');
+          element.setAttribute('src', `/site-assets/${localPath}`);
+        } else if (imageUrl.protocol === 'http:' || imageUrl.protocol === 'https:') element.setAttribute('src', imageUrl.href);
         else element.removeAttribute('src');
       }
       element.removeAttribute('srcset');

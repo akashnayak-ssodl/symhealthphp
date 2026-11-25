@@ -1,5 +1,5 @@
 import PageContent from '../components/PageContent.jsx';
-import { assetBase, pageData } from '../data.js';
+import { imageBase, pageData } from '../data.js';
 
 const messages = [
   {
@@ -66,7 +66,7 @@ export default function Messages() {
             <div className="legacy-message-grid">
               <div>{message.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
               <aside>
-                <img src={`${assetBase}${encodeURIComponent(message.image)}`} alt={message.name} loading="lazy" />
+                <img src={`${imageBase}${encodeURIComponent(message.image)}`} alt={message.name} loading="lazy" />
                 <h3>{message.name}</h3>
                 <p>{message.role}</p>
               </aside>

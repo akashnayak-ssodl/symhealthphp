@@ -1,4 +1,4 @@
-import { assetBase, associateLogos } from '../data.js';
+import { associateLogos, imageBase } from '../data.js';
 
 export default function PartnerCarousel() {
   return (
@@ -9,7 +9,7 @@ export default function PartnerCarousel() {
             {associateLogos.map(([name, filename]) => (
               <figure className="partner-logo" key={name}>
                 <img
-                  src={`${assetBase}associate/${encodeURIComponent(filename)}`}
+                  src={`${imageBase}associate/${encodeURIComponent(filename)}`}
                   alt={duplicate ? '' : name}
                   loading="lazy"
                 />

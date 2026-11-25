@@ -1,5 +1,5 @@
 import PageContent from '../components/PageContent.jsx';
-import { assetBase, pageData } from '../data.js';
+import { imageBase, pageData } from '../data.js';
 import SmartLink from '../components/SmartLink.jsx';
 
 const focusAreas = [
@@ -13,7 +13,7 @@ export default function Fhbs() {
     <PageContent slug="fhbs" page={{ ...pageData.fhbs, sections: [] }}>
       <section className="legacy-faculty">
         <figure>
-          <img src={`${assetBase}SIU%20building.jpg`} alt="Symbiosis International University campus at Lavale" loading="lazy" />
+          <img src={`${imageBase}SIU%20building.jpg`} alt="Symbiosis International University campus at Lavale" loading="lazy" />
           <figcaption>Symbiosis International University · Lavale, Pune</figcaption>
         </figure>
         <div>

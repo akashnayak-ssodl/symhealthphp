@@ -1,4 +1,4 @@
-import { assetBase } from '../data.js';
+import { imageBase } from '../data.js';
 import { PageHero } from '../components/PageContent.jsx';
 
 const campuses = [
@@ -26,7 +26,7 @@ export default function AboutSymbiosis() {
               <h2>Symbiosis: A saga of excellence</h2>
               <p className="symbiosis-motto"><strong>“Vasudhaiva Kutumbakkam”</strong> means “The world is one family.”</p>
             </div>
-            <img className="symbiosis-emblem" src={`${assetBase}one-world-img.png`} alt="The world is one family" loading="lazy" />
+            <img className="symbiosis-emblem" src={`${imageBase}one-world-img.png`} alt="The world is one family" loading="lazy" />
           </section>
 
           <div className="symbiosis-stats" aria-label="Symbiosis at a glance">
@@ -48,7 +48,7 @@ export default function AboutSymbiosis() {
               <a className="text-link" href="https://siu.edu.in/about-founder.php" target="_blank" rel="noopener noreferrer">Read more about the founder <span aria-hidden="true">↗</span></a>
             </div>
             <figure>
-              <img src={`${assetBase}president.jpg`} alt="Dr. S. B. Mujumdar" loading="lazy" />
+              <img src={`${imageBase}president.jpg`} alt="Dr. S. B. Mujumdar" loading="lazy" />
               <figcaption>Founder &amp; President, Symbiosis</figcaption>
             </figure>
           </section>
@@ -61,7 +61,7 @@ export default function AboutSymbiosis() {
             <div className="symbiosis-campus-grid">
               {campuses.map((campus) => (
                 <figure className="symbiosis-campus-card" key={`${campus.city}-${campus.name}`}>
-                  <img src={`${assetBase}${campus.image}`} alt={`${campus.name} campus, ${campus.city}`} loading="lazy" />
+                  <img src={`${imageBase}${campus.image}`} alt={`${campus.name} campus, ${campus.city}`} loading="lazy" />
                   <figcaption><span>{campus.city}</span><strong>{campus.name}</strong></figcaption>
                 </figure>
               ))}

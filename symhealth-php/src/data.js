@@ -1,6 +1,7 @@
 export const sourceBase = 'https://symhealth.siu.edu.in/';
 export const assetBase = `${sourceBase}assets/`;
-export const eventLogo = `${assetBase}Symhealth-2026-logo.webp`;
+export const imageBase = '/site-assets/assets/';
+export const eventLogo = `${imageBase}Symhealth-2026-logo.webp`;
 
 export const pageData = {
   'about-symbiosis': {
@@ -247,10 +248,10 @@ export const importantDates = [
 ];
 
 export const campusPhotos = [
-  { src: `${assetBase}SIU%20lavale.jpg`, alt: 'Symbiosis Lavale campus in a green hillside setting' },
-  { src: `${assetBase}SIU%202.jpg`, alt: 'Campus buildings at Symbiosis International University' },
-  { src: `${assetBase}SIU%20building.jpg`, alt: 'Symbiosis university building' },
-  { src: `${assetBase}Lavale.jpg`, alt: 'Lavale campus grounds' },
+  { src: `${imageBase}SIU%20lavale.jpg`, alt: 'Symbiosis Lavale campus in a green hillside setting' },
+  { src: `${imageBase}SIU%202.jpg`, alt: 'Campus buildings at Symbiosis International University' },
+  { src: `${imageBase}SIU%20building.jpg`, alt: 'Symbiosis university building' },
+  { src: `${imageBase}Lavale.jpg`, alt: 'Lavale campus grounds' },
 ];
 
 export const associateLogos = [
