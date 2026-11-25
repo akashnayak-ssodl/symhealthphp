@@ -331,6 +331,46 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 .text-logo strong, .text-logo small { display: block; }
 .text-logo strong { font: 800 19px Manrope, sans-serif; letter-spacing: .04em; }
 .text-logo small { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .14em; }
+.about-university-page { padding-block: 74px 96px; }
+.about-university-feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, .92fr); align-items: center; gap: 68px; padding-bottom: 70px; border-bottom: 1px solid var(--line); }
+.about-university-copy h2 { max-width: 600px; margin-bottom: 22px; font-size: clamp(34px, 4vw, 51px); letter-spacing: -.06em; line-height: 1.1; }
+.about-university-copy p { max-width: 610px; color: var(--muted); font-size: 15px; }
+.about-university-copy .text-link { margin-top: 2px; }
+.about-university-photo { position: relative; min-height: 410px; margin: 0; overflow: hidden; border-radius: 120px 14px 14px 14px; background: linear-gradient(145deg, #68131e, #d78a64); }
+.about-university-photo::after { position: absolute; inset: 45% 0 0; background: linear-gradient(0deg, rgba(30, 8, 12, .82), transparent); content: ''; pointer-events: none; }
+.about-university-photo img { display: block; width: 100%; height: 100%; min-height: 410px; object-fit: cover; }
+.about-university-photo figcaption { position: absolute; z-index: 1; right: 28px; bottom: 25px; left: 28px; display: flex; flex-direction: column; color: #fff; }
+.about-university-photo figcaption span { color: #f3bb91; font-size: 10px; font-weight: 700; letter-spacing: .14em; }
+.about-university-photo figcaption strong { margin-top: 4px; font-size: 23px; }
+.university-facts { display: grid; grid-template-columns: minmax(210px, .8fr) 1.2fr; align-items: end; gap: 50px; padding-block: 65px; border-bottom: 1px solid var(--line); }
+.university-facts-heading h2 { max-width: 380px; margin: 0; font-size: clamp(27px, 3vw, 37px); letter-spacing: -.05em; line-height: 1.15; }
+.university-facts-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.university-fact { display: flex; min-height: 104px; flex-direction: column; justify-content: center; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.university-fact strong { color: var(--brand); font-size: 28px; letter-spacing: -.06em; line-height: 1.2; }
+.university-fact span { margin-top: 5px; color: var(--muted); font-size: 10px; line-height: 1.35; }
+.university-purpose { position: relative; display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 25px; align-items: start; padding: 65px 7%; border-bottom: 1px solid var(--line); }
+.university-purpose-mark { color: var(--brand-soft); font: 800 126px/.8 Georgia, serif; }
+.university-purpose h2 { max-width: 780px; margin-bottom: 14px; font-size: clamp(28px, 3.5vw, 43px); letter-spacing: -.055em; line-height: 1.15; }
+.university-purpose p { max-width: 650px; margin: 0; color: var(--muted); font-size: 14px; }
+.conference-overview { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 65px; padding-block: 68px; border-bottom: 1px solid var(--line); }
+.conference-overview-intro h2 { max-width: 520px; margin-bottom: 18px; font-size: clamp(30px, 3.6vw, 43px); letter-spacing: -.055em; line-height: 1.12; }
+.conference-overview-intro > p { max-width: 570px; color: var(--muted); font-size: 14px; }
+.conference-reach { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+.conference-reach > div { display: flex; min-width: 150px; flex-direction: column; padding: 13px 15px; border-left: 2px solid var(--brand); background: var(--surface); }
+.conference-reach strong { color: var(--brand); font-size: 20px; letter-spacing: -.04em; }
+.conference-reach span { color: var(--muted); font-size: 10px; }
+.conference-overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; align-self: center; }
+.conference-overview-grid article { padding: 22px 19px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface); }
+.conference-overview-grid article > span { color: var(--brand); font-size: 9px; font-weight: 700; letter-spacing: .12em; }
+.conference-overview-grid article > span i { padding-inline: 5px; color: var(--muted); font-style: normal; }
+.conference-overview-grid h3 { margin: 17px 0 8px; font-size: 19px; letter-spacing: -.035em; line-height: 1.25; }
+.conference-overview-grid p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+.about-university-links { display: flex; align-items: center; justify-content: space-between; gap: 35px; margin-top: 64px; padding: 34px 38px; border-radius: 14px; color: #fff; background: linear-gradient(120deg, #54131d, #8b1926 72%, #a93035); }
+.about-university-links .eyebrow { color: #f3bb91; }
+.about-university-links h2 { max-width: 520px; margin: 0; font-size: clamp(23px, 3vw, 32px); letter-spacing: -.045em; line-height: 1.2; }
+.about-university-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+.about-university-actions .button { min-height: 43px; padding: 10px 16px; font-size: 11px; }
+.about-university-actions .button-outline { border-color: rgba(255,255,255,.5); }
 .not-found { min-height: 430px; padding-block: 90px; }
 .not-found h1 { margin-bottom: 14px; font-size: clamp(38px, 6vw, 62px); letter-spacing: -.06em; }
 .not-found p { margin-bottom: 25px; color: var(--muted); }
@@ -360,16 +400,26 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 .lightbox-arrow.next { right: 12px; }
 
 /* Footer */
-.site-footer { padding-top: 65px; color: #e9d5d0; background: #291317; font-size: 12px; }
-.footer-grid { display: grid; grid-template-columns: 1.25fr 1.2fr 1fr .7fr; gap: 40px; padding-bottom: 45px; }
+.site-footer { position: relative; padding-top: 31px; overflow: hidden; color: #f0dfda; background: radial-gradient(ellipse at 86% 0%, rgba(147, 42, 48, .34), transparent 34%), linear-gradient(125deg, #241116, #37151c 58%, #251116); font-size: 12px; }
+.site-footer::before { position: absolute; inset: 0; background-image: radial-gradient(rgba(242,177,124,.12) .8px, transparent .8px); background-size: 18px 18px; content: ''; opacity: .48; pointer-events: none; mask-image: linear-gradient(110deg, transparent 26%, #000 100%); }
+.footer-topline, .footer-grid, .footer-bottom { position: relative; }
+.footer-topline { display: flex; justify-content: space-between; gap: 20px; padding-block: 0 22px; border-bottom: 1px solid rgba(255,255,255,.13); color: #d7bcb4; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.footer-topline i { padding-inline: 5px; color: #f2b17c; font-style: normal; }
+.footer-grid { display: grid; grid-template-columns: 1.15fr 1.2fr 1fr .85fr; gap: 42px; padding-block: 39px 38px; }
 .footer-brand { color: #fff; font: 700 15px Manrope, sans-serif; }
-.footer-brand .event-mark { width: 35px; height: 35px; font-size: 19px; }
-.footer-about p { max-width: 250px; margin-top: 17px; color: #cbb3ae; font-size: 12px; }
-.footer-grid h2 { margin-bottom: 12px; color: #f2b17c; font: 700 12px Manrope, sans-serif; }
-.footer-grid p { margin-bottom: 10px; color: #cbb3ae; font-size: 11px; }
-.footer-grid > div:not(.footer-about) > a { display: block; width: fit-content; margin-bottom: 8px; color: #f5e5e0; text-decoration: none; }
-.footer-grid > div:not(.footer-about) > a:hover { color: #f2b17c; }
-.footer-grid .footer-hours { margin-top: 13px; }
+.footer-brand .event-mark { width: 39px; height: 39px; border: 1px solid rgba(255,255,255,.3); background: linear-gradient(145deg, #ca4650, #8e1724); font-size: 19px; }
+.footer-about p { max-width: 270px; margin-top: 16px; color: #cfb8b2; font-size: 12px; line-height: 1.75; }
+.footer-about-note { color: #f2b17c; font-size: 10px; font-weight: 700; letter-spacing: .06em; }
+.footer-grid h2 { margin-bottom: 15px; color: #f2b17c; font: 700 11px Manrope, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.footer-grid p { margin-bottom: 10px; color: #cfb8b2; font-size: 11px; line-height: 1.7; }
+.footer-grid > div:not(.footer-about) > a, .footer-explore-links a { display: block; width: fit-content; max-width: 100%; margin-bottom: 9px; color: #f5e5e0; overflow-wrap: anywhere; text-decoration: none; transition: color .18s ease, transform .18s ease; }
+.footer-grid > div:not(.footer-about) > a:hover, .footer-explore-links a:hover { color: #f2b17c; transform: translateX(2px); }
+.footer-grid .footer-hours { margin-top: 15px; color: #f2b17c; }
+.footer-explore-links { margin-bottom: 17px; }
+.footer-socials { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.12); }
+.footer-socials a { color: #cfb8b2; font-size: 10px; text-decoration: none; }
+.footer-socials a span { color: #f2b17c; }
+.footer-socials a:hover { color: #fff; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-block: 17px; border-top: 1px solid rgba(255,255,255,.15); color: #bda5a0; font-size: 10px; }
 .footer-bottom a { color: inherit; text-decoration: none; }
 .footer-bottom a:hover { color: #fff; }
@@ -421,6 +471,14 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
   .video-grid > div:first-child { max-width: 600px; }
   .report-grid { grid-template-columns: repeat(3, 1fr); }
   .page-layout { grid-template-columns: 1fr; gap: 25px; }
+  .about-university-feature { grid-template-columns: 1fr; gap: 35px; }
+  .about-university-copy { max-width: 700px; }
+  .about-university-photo { min-height: 360px; }
+  .about-university-photo img { min-height: 360px; }
+  .university-facts { grid-template-columns: 1fr; gap: 22px; }
+  .about-university-links { align-items: flex-start; flex-direction: column; }
+  .about-university-actions { justify-content: flex-start; }
+  .conference-overview { grid-template-columns: 1fr; gap: 35px; }
   .symbiosis-intro { grid-template-columns: minmax(0, 1fr) 155px; gap: 24px; }
   .symbiosis-founder { grid-template-columns: minmax(0, 1fr) 220px; gap: 25px; padding: 23px; }
   .symbiosis-campus-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
@@ -483,6 +541,25 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
   .page-banner .eyebrow { margin-top: 29px; }
   .page-banner h1 { font-size: 42px; }
   .page-content { padding-block: 43px 80px; }
+  .about-university-page { padding-block: 46px 70px; }
+  .about-university-feature { gap: 28px; padding-bottom: 45px; }
+  .about-university-copy h2 { font-size: 34px; }
+  .about-university-photo, .about-university-photo img { min-height: 285px; }
+  .about-university-photo { border-radius: 85px 12px 12px 12px; }
+  .about-university-photo figcaption { right: 20px; bottom: 19px; left: 20px; }
+  .university-facts { gap: 19px; padding-block: 42px; }
+  .university-facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .university-fact { min-height: 88px; }
+  .university-purpose { grid-template-columns: 42px minmax(0, 1fr); gap: 11px; padding: 42px 0; }
+  .university-purpose-mark { font-size: 76px; }
+  .university-purpose h2 { font-size: 29px; }
+  .about-university-links { gap: 22px; margin-top: 40px; padding: 24px 21px; }
+  .about-university-actions { align-items: stretch; flex-direction: column; width: 100%; }
+  .about-university-actions .button { width: 100%; }
+  .conference-overview { gap: 27px; padding-block: 44px; }
+  .conference-overview-grid { grid-template-columns: 1fr; }
+  .conference-reach { gap: 8px; }
+  .conference-reach > div { min-width: 0; flex: 1; padding-inline: 10px; }
   .symbiosis-page { padding-block: 32px 54px; }
   .symbiosis-intro, .symbiosis-founder { grid-template-columns: 1fr; gap: 24px; }
   .symbiosis-intro { gap: 16px; }
@@ -532,6 +609,7 @@ h1, h2, h3, strong { font-family: Manrope, sans-serif; }
 
 .home-header-shell { position: absolute; z-index: 40; top: 0; left: 0; width: 100%; color: #57141d; background: rgba(255,255,255,.97); transition: background .25s, box-shadow .25s, backdrop-filter .25s; }
 .home-header-shell.is-scrolled { position: fixed; background: rgba(255,255,255,.97); box-shadow: 0 8px 26px rgba(30, 7, 11, .16); backdrop-filter: blur(14px); }
+.page-header-shell { position: sticky; top: 0; }
 .home-utility-strip { display: none; }
 .home-utility-inner { width: min(1800px, calc(100% - 48px)); margin-inline: auto; }
 .home-header-shell.is-scrolled .home-utility-strip { display: none; }

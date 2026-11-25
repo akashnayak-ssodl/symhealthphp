@@ -151,99 +151,63 @@ function Header() {
     return () => window.removeEventListener('scroll', updateScrollState);
   }, [isHome]);
 
-  if (isHome) {
-    return (
-      <div className={`home-header-shell${isScrolled ? ' is-scrolled' : ''}${menuOpen ? ' is-open' : ''}`}>
-        <div className="home-utility-strip">
-          <div className="home-utility-inner">Symbiosis International University, Lavale.</div>
-        </div>
-        <header className="site-header home-masthead">
-          <div className="container home-masthead-inner">
-            <SmartLink to="/" className="university-brand home-university-brand" aria-label="Symbiosis International home">
-              <img src={logo} alt="Symbiosis International (Deemed University)" />
-            </SmartLink>
-            <SmartLink to="/" className="event-brand home-event-brand" aria-label="SYMHEALTH 2026 home">
-              <img src={eventLogo} alt="" />
-              <span className="event-brand-copy">
-                <strong>SYMHEALTH <span>2026</span></strong>
-                <small>SMART HEALTHCARE · LAVALE, PUNE</small>
-              </span>
-            </SmartLink>
-            <nav className="home-top-nav" aria-label="Conference navigation">
-              <NavigationItems items={headerNavigation} id="home-top-navigation" pathname={location.pathname} />
-            </nav>
-            <div className="header-actions home-header-actions">
-              <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="home-top-navigation" onClick={() => setMenuOpen((open) => !open)}>
-                <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
-              </button>
-            </div>
-          </div>
-        </header>
-        <nav className="compact-home-nav" aria-label="Conference navigation">
-          <div className="container compact-home-inner">
-            <SmartLink to="/" className="compact-event-brand" aria-label="SYMHEALTH 2026 home">
-              <img src={logo} alt="Symbiosis International (Deemed University)" />
-              <strong>SYMHEALTH <span>2026</span></strong>
-            </SmartLink>
-            <div className="compact-home-links">
-              <NavigationItems items={headerNavigation} id="compact-home-navigation" pathname={location.pathname} />
-            </div>
-            <button className="menu-toggle compact-menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="compact-home-navigation" onClick={() => setMenuOpen((open) => !open)}>
-              <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
-            </button>
-          </div>
-        </nav>
-      </div>
-    );
-  }
-
   return (
-    <>
-      <div className="utility-bar">
-        <div className="container utility-inner">
-          <span>Symbiosis International (Deemed University)</span>
-          <div className="utility-links">
-            <span>17–18 April 2026 <i aria-hidden="true">·</i> Lavale, Pune</span>
-            <a href="mailto:symhealthregistration@siu.edu.in">symhealthregistration@siu.edu.in</a>
-          </div>
-        </div>
+    <div className={`home-header-shell${isHome ? '' : ' page-header-shell'}${isScrolled ? ' is-scrolled' : ''}${menuOpen ? ' is-open' : ''}`}>
+      <div className="home-utility-strip">
+        <div className="home-utility-inner">Symbiosis International University, Lavale.</div>
       </div>
-      <header className="site-header">
-        <div className="container header-inner">
-          <SmartLink to="/" className="university-brand" aria-label="SYMHEALTH 2026 home">
+      <header className="site-header home-masthead">
+        <div className="container home-masthead-inner">
+          <SmartLink to="/" className="university-brand home-university-brand" aria-label="Symbiosis International home">
             <img src={logo} alt="Symbiosis International (Deemed University)" />
           </SmartLink>
-          <SmartLink to="/" className="event-brand" aria-label="SYMHEALTH 2026 home">
+          <SmartLink to="/" className="event-brand home-event-brand" aria-label="SYMHEALTH 2026 home">
             <img src={eventLogo} alt="" />
             <span className="event-brand-copy">
               <strong>SYMHEALTH <span>2026</span></strong>
               <small>SMART HEALTHCARE · LAVALE, PUNE</small>
             </span>
           </SmartLink>
-          <div className="header-actions">
-            <SmartLink to="/contact-us" className="header-contact">Contact us <span aria-hidden="true">↗</span></SmartLink>
-            <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen((open) => !open)}>
+          <nav className="home-top-nav" aria-label="Conference navigation">
+            <NavigationItems items={headerNavigation} id="home-top-navigation" pathname={location.pathname} />
+          </nav>
+          <div className="header-actions home-header-actions">
+            <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="home-top-navigation" onClick={() => setMenuOpen((open) => !open)}>
               <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
             </button>
           </div>
         </div>
       </header>
-      <nav className={`primary-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
-        <div className="container nav-inner">
-          <NavigationItems items={headerNavigation} id="primary-navigation" pathname={location.pathname} />
+      <nav className="compact-home-nav" aria-label="Conference navigation">
+        <div className="container compact-home-inner">
+          <SmartLink to="/" className="compact-event-brand" aria-label="SYMHEALTH 2026 home">
+            <img src={logo} alt="Symbiosis International (Deemed University)" />
+            <strong>SYMHEALTH <span>2026</span></strong>
+          </SmartLink>
+          <div className="compact-home-links">
+            <NavigationItems items={headerNavigation} id="compact-home-navigation" pathname={location.pathname} />
+          </div>
+          <button className="menu-toggle compact-menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="compact-home-navigation" onClick={() => setMenuOpen((open) => !open)}>
+            <span aria-hidden="true">{menuOpen ? '×' : '☰'}</span> <span>{menuOpen ? 'Close' : 'Menu'}</span>
+          </button>
         </div>
       </nav>
-    </>
+    </div>
   );
 }
 
 function Footer() {
   return (
     <footer className="site-footer">
+      <div className="container footer-topline">
+        <span>Symbiosis International (Deemed University)</span>
+        <span>Lavale, Pune <i aria-hidden="true">·</i> India</span>
+      </div>
       <div className="container footer-grid">
         <div className="footer-about">
           <SmartLink to="/" className="footer-brand"><span className="event-mark">S</span> SYMHEALTH 2026</SmartLink>
           <p>A national conference on embracing smart healthcare: predictive, precision and personalized health systems.</p>
+          <span className="footer-about-note">Ideas for a healthier future.</span>
         </div>
         <div>
           <h2>Conference office</h2>
@@ -254,18 +218,23 @@ function Footer() {
           <h2>Get in touch</h2>
           <a href="tel:+918888892258">+91 88888 92258</a>
           <a href="tel:+912066975084">+91 20 66975084 / 89</a>
-          <a href="mailto:symhealthregistration@siu.edu.in">symhealthregistration@siu.edu.in</a>
+          <a href="mailto:symhealthregistration@siu.edu.in">Registration: symhealthregistration@siu.edu.in</a>
+          <a href="mailto:symhealth@ssodl.edu.in">Abstracts: symhealth@ssodl.edu.in</a>
           <p className="footer-hours">Contact hours: 9 am to 4 pm IST</p>
         </div>
         <div>
           <h2>Explore</h2>
-          <SmartLink to="/call_for_papers">Call for Papers</SmartLink>
-          <SmartLink to="/registration-fees">Registration</SmartLink>
-          <SmartLink to="/about-pune">About Pune</SmartLink>
-          <a href="https://www.facebook.com/Symhealth/" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
-          <a href="https://twitter.com/SymHealth2018" target="_blank" rel="noopener noreferrer">Twitter ↗</a>
-          <a href="https://www.youtube.com/channel/UCkQbCp7hvJnTl3N6KkuSzoQ" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <div className="footer-explore-links">
+            <SmartLink to="/call_for_papers">Call for Papers</SmartLink>
+            <SmartLink to="/registration-fees">Registration</SmartLink>
+            <SmartLink to="/about-pune">About Pune</SmartLink>
+          </div>
+          <nav className="footer-socials" aria-label="Social media">
+            <a href="https://www.facebook.com/Symhealth/" target="_blank" rel="noopener noreferrer">Facebook <span aria-hidden="true">↗</span></a>
+            <a href="https://twitter.com/SymHealth2018" target="_blank" rel="noopener noreferrer">Twitter <span aria-hidden="true">↗</span></a>
+            <a href="https://www.youtube.com/channel/UCkQbCp7hvJnTl3N6KkuSzoQ" target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+          </nav>
         </div>
       </div>
       <div className="container footer-bottom">

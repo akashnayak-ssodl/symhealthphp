@@ -36,3 +36,14 @@ Deploy the contents of `dist/` to a static web host. For Apache, copy the includ
 - `index.html` — Vite application entry point
 
 All page entry points and page views are React components. The former PHP pages and server helpers have been removed; saved page content remains in `cache/` and is rendered by React. Photographs and archive documents continue to use their original public asset URLs. The included Apache rewrite only sends app routes (and old `.php` bookmarks) to the React entry point; no PHP runtime is required. The site includes a searchable page directory, responsive dropdown navigation, theme switcher, campus photo viewer, collapsible FAQs, share action, conference archive and reduced-motion support. Registration and abstract submissions are closed because the 2026 event has passed.
+
+
+
+
+
+
+
+npm --prefix .\symhealth-php run build
+cd /d C:\symhealthphp\symhealth-php
+npm run build
+npm run preview
